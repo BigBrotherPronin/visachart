@@ -3,7 +3,7 @@ import { Container, Typography, Box, Grid, CircularProgress, Alert } from '@mui/
 import FileUpload from './components/FileUpload';
 import Visualization from './components/Visualization';
 import { DatasetMetadata, Dashboard } from './types';
-import { generateVisualizationCommands } from './services/openai';
+import { generateVisualizations } from './services/openai';
 
 function App() {
   const [metadata, setMetadata] = useState<DatasetMetadata | null>(null);
@@ -19,7 +19,7 @@ function App() {
     setError(null);
 
     try {
-      const generatedDashboard = await generateVisualizationCommands(metadata);
+      const generatedDashboard = await generateVisualizations(metadata);
       setDashboard(generatedDashboard);
     } catch (err) {
       setError('Failed to generate visualizations. Please try again.');

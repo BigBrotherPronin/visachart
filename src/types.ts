@@ -10,7 +10,11 @@ export interface ColumnMetadata {
 export interface DatasetMetadata {
   filename: string;
   rowCount: number;
-  columns: ColumnMetadata[];
+  columns: Array<{
+    name: string;
+    type: string;
+    sample: string[];
+  }>;
 }
 
 export interface DataCommand {
@@ -23,7 +27,12 @@ export interface DataCommand {
 export interface Visualization {
   id: string;
   type: 'histogram' | 'scatterPlot' | 'barChart' | 'lineChart';
-  dataCommand: DataCommand;
+  dataCommand: {
+    sourceColumn?: string;
+    xColumn?: string;
+    yColumn?: string;
+    bins?: number;
+  };
   title: string;
   description: string;
 }
